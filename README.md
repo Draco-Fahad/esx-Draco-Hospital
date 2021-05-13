@@ -17,6 +17,7 @@ You Can Find Many Options in Config.lua
 https://www.youtube.com/watch?v=lXI03xTJhMk
 
 **Orignal Post**
+https://forum.cfx.re/t/fivem-hospital-healing-revive-with-injury-system-draco-customs-optimized-script/2874231
 
 
 
