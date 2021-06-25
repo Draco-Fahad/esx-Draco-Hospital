@@ -168,25 +168,28 @@ end)
 
 
 --inury
+local hurt = false
 Citizen.CreateThread(function()
-	while true do
-		Wait(2500)
-		if GetEntityHealth(GetPlayerPed(-1)) <= 160 then
-		exports['mythic_notify']:DoHudText('error', 'You Are Injured, Go To The Hospital')
-			setHurt()
-		elseif GetEntityHealth(GetPlayerPed(-1)) > 161 then
-			setNotHurt()
-		end
-	end
+    while true do
+        Wait(5000)
+        if GetEntityHealth(GetPlayerPed(-1)) <= 160 then
+exports['mythic_notify']:DoHudText('error', 'You Are Injured, Go To The Hospital')
+            setHurt()
+        elseif hurt and GetEntityHealth(GetPlayerPed(-1)) > 161 then
+            setNotHurt()
+        end
+    end
 end)
 
 function setHurt()
-	RequestAnimSet("move_m@injured")
-	SetPedMovementClipset(GetPlayerPed(-1), "move_m@injured", true)
+    hurt = true
+    RequestAnimSet("move_m@injured")
+    SetPedMovementClipset(GetPlayerPed(-1), "move_m@injured", true)
 end
 
 function setNotHurt()
-	ResetPedMovementClipset(GetPlayerPed(-1))
-	ResetPedWeaponMovementClipset(GetPlayerPed(-1))
-	ResetPedStrafeClipset(GetPlayerPed(-1))
+    hurt = false
+    ResetPedMovementClipset(GetPlayerPed(-1))
+    ResetPedWeaponMovementClipset(GetPlayerPed(-1))
+    ResetPedStrafeClipset(GetPlayerPed(-1))
 end
